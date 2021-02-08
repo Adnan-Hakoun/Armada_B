@@ -1,5 +1,6 @@
 from django.db import models
 from users.models import Usery
+from categories.models import Category
 from django.db.models import Q
 
 class Product(models.Model):
@@ -7,6 +8,8 @@ class Product(models.Model):
     name = models.CharField(max_length = 120)
 
     price = models.DecimalField(max_digits = 8 , decimal_places = 2)
+
+    categories = models.ManyToManyField(Category,blank=True)
 
     image = models.ImageField(upload_to = 'normal/%Y/%m/%d')
 

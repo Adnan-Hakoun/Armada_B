@@ -11,7 +11,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
     serializer_class = UserSerializer
 
-
+    
     def get_authenticators(self):
     
         if self.request.method == "POST":
@@ -33,6 +33,7 @@ class UserViewSet(viewsets.ModelViewSet):
         basket = current_user.basket_set.first() 
         
         return Response({
+            'user_type' : current_user.type,
             'username': current_user.username,
             'id' : current_user.id,
             'basket' : basket.id

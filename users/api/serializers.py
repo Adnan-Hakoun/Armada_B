@@ -9,7 +9,9 @@ class UserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
 
-        newuser = Usery.objects.create(username=validated_data['username'],age=validated_data['age'])
+        newuser = Usery.objects.create(username=validated_data['username'],
+                                        age=validated_data['age'],
+                                        type = validated_data['type'])
         newuser.set_password(validated_data['password'])
         newuser.save()
         Basket.objects.create(owner = newuser)

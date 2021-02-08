@@ -1,6 +1,9 @@
 from .serializers import ProductsSerializer , ProductsSerializerUpdate
-from rest_framework import viewsets
+from rest_framework import viewsets , permissions
 from products.models import Product
+from .permissions import IsVendorOrReadOnly
+
+
 
 class ProductsViewSet(viewsets.ModelViewSet):
     
@@ -8,9 +11,10 @@ class ProductsViewSet(viewsets.ModelViewSet):
 
     queryset = Product.objects.filter(is_deleted = False)
 
+    permission_classes = [IsVendorOrReadOnly]
 
     def get_queryset(self):
-
+        
         if self.request.GET.get('keys'):
 
             keys = self.request.GET.get('keys')
@@ -33,7 +37,4 @@ class ProductsViewSet(viewsets.ModelViewSet):
         if self.action == 'update':
             return ProductsSerializerUpdate
         return ProductsSerializer    
-
-
-    
 

@@ -9,6 +9,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('products/', include('products.api.urls')),
     path('users/', include('users.api.urls')),
+    path('categories/', include('categories.api.urls')),
     path('baskets/', include('baskets.api.urls')),
     path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),

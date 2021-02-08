@@ -6,6 +6,12 @@ class Usery(AbstractUser):
 
     age = models.IntegerField(null=True)
 
+    type = models.CharField(
+        max_length=24,
+        choices=[('costumer','costumer'),('vendor','vendor')],
+        default='costumer',
+    )
+
     def __str__(self):
         
         return self.username +' / '+ str(self.age)
